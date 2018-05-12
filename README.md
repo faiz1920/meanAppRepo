@@ -1,0 +1,2 @@
+# meanAppRepo
+MEAN Applications
