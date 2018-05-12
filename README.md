@@ -1,2 +1,2 @@
 # meanAppRepo
-MEAN Applications
+meanApp2
