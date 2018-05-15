@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 // const path = require('path');
-const route = require('./routes/genre.route');
 const app = express();
 const port = 3000;
 const dbUrl = 'mongodb://localhost/bookstore';
@@ -13,11 +12,20 @@ const multer = require("multer");
 // Models
 Genre = require('./models/genre');
 Book = require('./models/book');
+Customer = require('./models/customer');
+
+// Routes
+const routeApp = require('./routes/app.route');
+const routeGenre = require('./routes/genre.route');
+const routeBook = require('./routes/book.route');
+const routeCustomer = require('./routes/customer.route');
+
 
 
 // Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser({ limit: '50mb' }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 //Enables Cross Origin Resource Sharing
 // app.use(cors());  
 app.use(function (req, res, next) {
@@ -27,7 +35,10 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-app.use('/api', route);
+app.use('/api', routeApp);
+app.use('/api', routeGenre);
+app.use('/api', routeBook);
+app.use('/api', routeCustomer);
 
 //Database Connection
 mongoose.connect(dbUrl);
@@ -35,6 +46,10 @@ mongoose.connection.on('connected', () => {
     console.log(`Connected to Mongo Database => ${dbUrl}`);
 })
 // const db = mongoose.connection;
+
+app.listen(port, () => {
+    console.log("Server started at port : " + port);
+});
 
 
 
@@ -115,9 +130,6 @@ mongoose.connection.on('connected', () => {
 
 
 
-app.listen(port, () => {
-    console.log("Server started at port : " + port);
-});
 
 
 

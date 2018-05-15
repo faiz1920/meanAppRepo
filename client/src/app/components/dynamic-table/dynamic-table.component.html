@@ -1,0 +1,15 @@
+<!--
+<ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"
+  [enableSorting]="true" [enableFilter]="true" rowSelection="multiple">
+</ag-grid-angular> -->
+
+
+<button (click)="sizeToFit()">Size to Fit</button>
+<button (click)="autoSizeAll()">Auto-Size All</button>
+<button (click)="updateData($event)">Save</button>
+
+<div style="height: 100%; box-sizing: border-box;">
+  <ag-grid-angular #agGrid style="width: 100%; height: 95%;" id="myGrid" class="ag-theme-balham" [columnDefs]="columnDefs"
+    [enableColResize]="true" [enableSorting]="true" [multiSortKey]="multiSortKey" [rowData]="rowData" [frameworkComponents]="frameworkComponents" (gridReady)="onGridReady($event)"
+    (rowEditingStarted)="onRowEditingStarted($event)"></ag-grid-angular>
+</div>
