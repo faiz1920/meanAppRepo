@@ -82,8 +82,8 @@ export class CustomersListComponent implements OnInit {
     };
 
     // this.sizeToFit();
-    setTimeout(
-      this.autoSizeAll(), 1000);
+    // setTimeout(
+    //   this.autoSizeAll(), 1000);
   }
 
   onGridReady(params) {

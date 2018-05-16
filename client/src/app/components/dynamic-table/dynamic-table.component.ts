@@ -1,7 +1,8 @@
 import { NumericEditor } from './numeric-editor.component';
 import { MoodEditor } from './mood-editor.component';
 import { MoodRenderer } from './mood-renderer.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
+import { EventsEmitService } from '../../services/events-emit.service';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -10,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DynamicTableComponent implements OnInit {
   ngOnInit(): void {
+    let dd = this._eventEmit.getNavChangeEmitter()
+      .subscribe(item => { this.sizeToFit() });
   }
   title = 'app';
   jsonData;
@@ -38,7 +41,8 @@ export class DynamicTableComponent implements OnInit {
   private rowData;
   private frameworkComponents;
 
-  constructor() {
+  constructor(private injector: Injector, private _eventEmit: EventsEmitService) {
+    let showNum = this.injector.get('showNum');
     this.columnDefs = [
       {
         headerName: "Name",

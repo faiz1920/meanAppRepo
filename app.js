@@ -6,7 +6,7 @@ const cors = require('cors');
 // const path = require('path');
 const app = express();
 const port = 3000;
-const dbUrl = 'mongodb://localhost/bookstore';
+const dbUrl = 'mongodb://localhost/demo';
 const multer = require("multer");
 
 // Models
@@ -42,10 +42,25 @@ app.use('/api', routeCustomer);
 
 //Database Connection
 mongoose.connect(dbUrl);
-mongoose.connection.on('connected', () => {
-    console.log(`Connected to Mongo Database => ${dbUrl}`);
-})
+// mongoose.connection.on('connected', () => {
+//     console.log(`Connected to Mongo Database => ${dbUrl}`);
+// })
 // const db = mongoose.connection;
+
+
+// Database Connection
+//Set up default mongoose connection
+// const mongoDBUrl = 'mongodb://localhost/test';
+// mongoose.connect(mongoDBUrl);
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('connected', console.info.bind(console, `MongoDB Connected to ${dbUrl}`));
+db.on('error', console.error.bind(console, 'MongoDB connection error!'));
+
 
 app.listen(port, () => {
     console.log("Server started at port : " + port);
