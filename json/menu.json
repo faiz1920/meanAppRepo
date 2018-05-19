@@ -1,0 +1,42 @@
+[{
+    "_id": "file",
+    "name": "File",
+    "action": "expand",
+    "access": ["admin", "moderator", "user"],
+    "children": [{
+            "_id": "new_file",
+            "name": "New File",
+            "action": "new_file",
+            "access": ["admin", "moderator", "user"],
+            "children": null
+        },
+        {
+            "_id": "open_file",
+            "name": "Open File",
+            "action": "open_file",
+            "access": ["admin", "moderator", "user"],
+            "children": [{
+                    "_id": "html_file",
+                    "name": "HTML File",
+                    "action": "html_file",
+                    "access": ["admin", "moderator", "user"],
+                    "children": null
+                },
+                {
+                    "_id": "js_file",
+                    "name": "JS File",
+                    "action": "js_file",
+                    "access": ["admin", "moderator", "user"],
+                    "children": null
+                }
+            ]
+        },
+        {
+            "_id": "save_file",
+            "name": "Save File",
+            "action": "save_file",
+            "access": ["admin", "moderator", "user"],
+            "children": null
+        }
+    ]
+}]

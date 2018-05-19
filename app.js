@@ -8,24 +8,34 @@ const app = express();
 const port = 3000;
 const dbUrl = 'mongodb://localhost/demo';
 const multer = require("multer");
+var upload = multer();
 
 // Models
 Genre = require('./models/genre');
 Book = require('./models/book');
 Customer = require('./models/customer');
+User = require('./models/user');
 
 // Routes
 const routeApp = require('./routes/app.route');
 const routeGenre = require('./routes/genre.route');
 const routeBook = require('./routes/book.route');
 const routeCustomer = require('./routes/customer.route');
+const routeUser = require('./routes/user.route');
 
 
 
 // Middleware
-app.use(bodyParser({ limit: '50mb' }));
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(bodyParser({
+    limit: '50mb'
+}));
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
+app.use(bodyParser.urlencoded({
+    extended: true,
+    limit: '50mb'
+}));
 //Enables Cross Origin Resource Sharing
 // app.use(cors());  
 app.use(function (req, res, next) {
@@ -35,10 +45,17 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+// for parsing multipart/form-data
+app.use(upload.array());
+app.use(express.static('public'))
+
+
 app.use('/api', routeApp);
 app.use('/api', routeGenre);
 app.use('/api', routeBook);
 app.use('/api', routeCustomer);
+app.use('/api', routeUser);
 
 //Database Connection
 mongoose.connect(dbUrl);
