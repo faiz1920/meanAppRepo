@@ -1,20 +1,33 @@
-import { JsonDataService } from './../../services/json-data.service';
-import { Component, OnInit } from '@angular/core';
-import { NumericEditor } from './numeric-editor.component';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { JsonDataService } from '@app/services/json-data.service';
+import { CommonDataService } from '@app/services/common-data.service';
+import { NumericEditor } from '@app/components/customers-list/numeric-editor.component';
 
 @Component({
   selector: 'app-customers-list',
   templateUrl: './customers-list.component.html',
-  styleUrls: ['./customers-list.component.css']
+  styleUrls: ['./customers-list.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CustomersListComponent implements OnInit {
+
+  @Input() setData: any; //getting data from parent
+  @Output() getData = new EventEmitter<boolean>(); //sending data to parent
+
+
   customersList: any;
 
-  constructor(private _dataService: JsonDataService) { }
+  constructor(private _dataService: JsonDataService, private _commonService: CommonDataService) { }
 
   ngOnInit() {
-    this._dataService.getCustomersList().then(
-      success => { this.setCustomerData(success); console.log(JSON.stringify(success.length)); },
+    // let callKey = { "callKey": this.setData.callKey };
+    // this._commonService.makeServerRequest(callKey).then(
+    //   success => { this.setCustomerData(success); },
+    //   error => { console.error(JSON.stringify(error._body)); }
+    // );
+
+    this._dataService.getCustomersList_python().then(
+      success => { this.setCustomerData(success); console.log(JSON.stringify(success)); },
       error => { console.error(JSON.stringify(error)); }
     );
 
@@ -104,7 +117,18 @@ export class CustomersListComponent implements OnInit {
   onCellEditingStopped(event) {
     console.log('cellEditingStopped');
   }
-
+  onCellClicked(event) {
+    // console.log(event.data);
+    // console.log(event.value);
+  }
+  onCellDoubleClicked(event) {
+    console.log('onCellDoubleClicked');
+  }
+  onRowClicked(event) {
+    // console.log(event);
+    // console.log(event.data);
+    this.getData.emit(event);
+  }
 
 
   updateData(event) {

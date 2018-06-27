@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Customer Routes
 // Get Customer
-router.get('/customer', (req, res) => {
+router.get('/customers', (req, res) => {
     console.log('route : customer');
     Customer.getCustomer((err, customer) => {
         if (err) throw err;
@@ -47,6 +47,16 @@ router.put('/customer/:id', (req, res) => {
 router.delete('/customer/:id', (req, res) => {
     var id = req.params.id;
     Customer.deleteCustomer(id, (err, customer) => {
+        if (err) throw err;
+        res.json(customer);
+    });
+});
+
+// Find Customer by Id
+router.post('/customer/:id', (req, res) => {
+    console.log("find by id");
+    var id = req.params.id;
+    Customer.getCustomerDetails(id, (err, customer) => {
         if (err) throw err;
         res.json(customer);
     });

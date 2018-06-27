@@ -1,4 +1,4 @@
-import { SERVER_APP_URL, DATA_END_POINTS } from './../commons/app.config';
+import { SERVER_APP_URL, DATA_END_POINTS, SERVER_APP_URL_PYTHON, DATA_END_POINTS_PYTHON } from './../commons/app.config';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { TreeNode } from 'primeng/api';
@@ -39,4 +39,15 @@ export class JsonDataService {
       .toPromise()
       .then(res => { return res.json() });
   }
+
+  // shujath api calls
+
+  getCustomersList_python() {
+    console.log("getCustomersList_python");
+    return this._http.get(SERVER_APP_URL_PYTHON + DATA_END_POINTS_PYTHON.CUSTOMERS_LIST)
+      .toPromise()
+      .then(res => { return res.json() });
+  }
+
+
 }

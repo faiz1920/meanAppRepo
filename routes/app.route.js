@@ -14,8 +14,31 @@ router.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-//Get Menu
+// Error Routes
+router.get('/error', (req, res) => {
+    // console.log("/error body : " + JSON.stringify(req.body));
+    // console.log("/error param : " + JSON.stringify(req.params));
+    // console.log("/error query : " + JSON.stringify(req.query));
+    res.status(404);
+    res.send('Invalid URL = ' + req.query.invalidURL);
+});
 
+
+//Common Request
+router.post('/user_request', (req, res, next) => {
+    console.log("/user_request body : " + JSON.stringify(req.body));
+    console.log("/user_request param : " + JSON.stringify(req.params));
+    let callKey = req.body.callKey;
+    if (callKey === "getCustomers")
+        res.redirect('/api/customers');
+    else if (callKey === "getCustomerDetails")
+        res.redirect('/api/customer/');
+    else {
+        res.redirect('/api/error/?invalidURL=' + callKey);
+    }
+});
+
+//Get Menu
 router.post('/menu', (req, res) => {
     var user = req.body;
     console.log(JSON.stringify(user.user_type));

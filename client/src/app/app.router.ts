@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DataTreeComponent } from './components/primeng/data-tree/data-tree.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { CustomerDashboardComponent } from './dashboards/customer-dashboard/customer-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'floatinggenericdash', component: FloatingGenericDashboardComponent },
-  { path: 'testdash', component: TestDashboardComponent }
+  { path: 'testdash', component: TestDashboardComponent },
+  { path: 'customers', component: CustomerDashboardComponent }
 ];
 
 

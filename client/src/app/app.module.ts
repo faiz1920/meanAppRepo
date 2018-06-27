@@ -44,6 +44,8 @@ import { MenubarComponent } from './components/primeng/menubar/menubar.component
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { JsonDataService } from './services/json-data.service';
+import { CustomerDashboardComponent } from './dashboards/customer-dashboard/customer-dashboard.component';
+import { CommonDataService } from './services/common-data.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { JsonDataService } from './services/json-data.service';
     HomeComponent, CustomersListComponent, CustomersDetailsComponent,
     CustomerSitesListComponent, FloatingGenericDashboardComponent,
     TestDashboardComponent,
-    DataTreeComponent, DynamicComponentLoaderComponent, SlideMenuComponent, BreadcrumbComponent, MenubarComponent, UserLoginComponent, MenuComponent
+    DataTreeComponent, DynamicComponentLoaderComponent, SlideMenuComponent, BreadcrumbComponent, MenubarComponent, UserLoginComponent, MenuComponent, CustomerDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { JsonDataService } from './services/json-data.service';
     TreeModule, SlideMenuModule, BreadcrumbModule, MenubarModule, ButtonModule, InputTextModule,
     AgGridModule.withComponents([MoodEditor, MoodRenderer, NumericEditor])
   ],
-  providers: [AppService, JsonDataService],
+  providers: [AppService, JsonDataService, CommonDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

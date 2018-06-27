@@ -31,6 +31,14 @@ module.exports.getCustomer = function (callback, limit) {
     Customer.find(callback).limit(limit);
 };
 
+// Find Customer by Id
+module.exports.getCustomerDetails = function (callback, limit) {
+    var query = {
+        _id: id
+    };
+    Customer.find(query, callback);
+};
+
 // Add Customer
 module.exports.addCustomer = function (customer, callback) {
     Customer.create(customer, callback);
@@ -38,7 +46,9 @@ module.exports.addCustomer = function (customer, callback) {
 
 // Update Customer
 module.exports.updateCustomer = function (id, customer, options, callback) {
-    var query = { _id: id };
+    var query = {
+        _id: id
+    };
     var update = {
         name: customer.name
     };
@@ -47,6 +57,8 @@ module.exports.updateCustomer = function (id, customer, options, callback) {
 
 // Delete Customer
 module.exports.deleteCustomer = function (id, callback) {
-    var query = { _id: id };
+    var query = {
+        _id: id
+    };
     Customer.remove(query, callback);
 };

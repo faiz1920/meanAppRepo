@@ -1,6 +1,7 @@
 app-customers-list{
     width: auto;
     height: auto;
+    height: 400px;
     overflow: auto;
     margin: 0px;
     padding: 5px;
