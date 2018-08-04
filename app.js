@@ -15,6 +15,7 @@ Genre = require('./models/genre');
 Book = require('./models/book');
 Customer = require('./models/customer');
 User = require('./models/user');
+Product = require('./models/product');
 
 // Routes
 const routeApp = require('./routes/app.route');
@@ -22,7 +23,7 @@ const routeGenre = require('./routes/genre.route');
 const routeBook = require('./routes/book.route');
 const routeCustomer = require('./routes/customer.route');
 const routeUser = require('./routes/user.route');
-
+const routeProduct = require('./routes/product.route');
 
 
 // Middleware
@@ -56,6 +57,7 @@ app.use('/api', routeGenre);
 app.use('/api', routeBook);
 app.use('/api', routeCustomer);
 app.use('/api', routeUser);
+app.use('/api', routeProduct);
 
 //Database Connection
 mongoose.connect(dbUrl);

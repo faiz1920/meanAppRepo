@@ -26,13 +26,19 @@ router.get('/error', (req, res) => {
 
 //Common Request
 router.post('/user_request', (req, res, next) => {
+    console.log("\n======================================================\n");
     console.log("/user_request body : " + JSON.stringify(req.body));
     console.log("/user_request param : " + JSON.stringify(req.params));
+    console.log("/user_request options : " + JSON.stringify(req.options));
     let callKey = req.body.callKey;
     if (callKey === "getCustomers")
         res.redirect('/api/customers');
     else if (callKey === "getCustomerDetails")
         res.redirect('/api/customer/');
+    else if (callKey === "getProducts")
+        res.redirect(307,'/api/products');
+    else if (callKey === "getProduct")
+        res.redirect(307,'/api/product');
     else {
         res.redirect('/api/error/?invalidURL=' + callKey);
     }

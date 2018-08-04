@@ -46,6 +46,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { JsonDataService } from './services/json-data.service';
 import { CustomerDashboardComponent } from './dashboards/customer-dashboard/customer-dashboard.component';
 import { CommonDataService } from './services/common-data.service';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { CommonDataService } from './services/common-data.service';
     HomeComponent, CustomersListComponent, CustomersDetailsComponent,
     CustomerSitesListComponent, FloatingGenericDashboardComponent,
     TestDashboardComponent,
-    DataTreeComponent, DynamicComponentLoaderComponent, SlideMenuComponent, BreadcrumbComponent, MenubarComponent, UserLoginComponent, MenuComponent, CustomerDashboardComponent
+    DataTreeComponent, DynamicComponentLoaderComponent, SlideMenuComponent, BreadcrumbComponent, MenubarComponent, UserLoginComponent, MenuComponent, CustomerDashboardComponent, ProductsComponent
   ],
   imports: [
     BrowserModule,

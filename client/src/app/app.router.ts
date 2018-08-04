@@ -11,6 +11,7 @@ import { DataTreeComponent } from './components/primeng/data-tree/data-tree.comp
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerDashboardComponent } from './dashboards/customer-dashboard/customer-dashboard.component';
+import { ProductsComponent } from '@app/components/products/products.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'floatinggenericdash', component: FloatingGenericDashboardComponent },
   { path: 'testdash', component: TestDashboardComponent },
-  { path: 'customers', component: CustomerDashboardComponent }
+  { path: 'customers', component: CustomerDashboardComponent },
+  { path: 'products', component: ProductsComponent }
 ];
 
 

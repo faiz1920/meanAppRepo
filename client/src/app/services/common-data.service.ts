@@ -24,7 +24,9 @@ export class CommonDataService {
     console.log("Server Request ")
     console.log(JSON.stringify(callKey))
     console.log(JSON.stringify(payload))
-    return this._http.post(SERVER_APP_URL + "" + COMMON_END_POINT, callKey)
+    let requestObj = JSON.parse(JSON.stringify({ ...callKey, ...payload }));
+    console.log("RequestObj : " + JSON.stringify(requestObj))
+    return this._http.post(SERVER_APP_URL + "" + COMMON_END_POINT, requestObj)
       .toPromise()
       .then(res => { return res.json() });
   }
