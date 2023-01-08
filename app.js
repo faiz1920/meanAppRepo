@@ -1,63 +1,72 @@
 //Importing Modules
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 // const path = require('path');
 const app = express();
 const port = 3000;
-const dbUrl = 'mongodb://localhost/demo';
+// const dbUrl = 'mongodb://localhost/demo';
+const dbUrl =
+  "mongodb+srv://developer:teamKryoTek.007@kryotek-mongo-cbqnm.mongodb.net/test?retryWrites=true";
 const multer = require("multer");
 var upload = multer();
 
 // Models
-Genre = require('./models/genre');
-Book = require('./models/book');
-Customer = require('./models/customer');
-User = require('./models/user');
-Product = require('./models/product');
+Genre = require("./models/genre");
+Book = require("./models/book");
+Customer = require("./models/customer");
+User = require("./models/user");
+Product = require("./models/product");
 
 // Routes
-const routeApp = require('./routes/app.route');
-const routeGenre = require('./routes/genre.route');
-const routeBook = require('./routes/book.route');
-const routeCustomer = require('./routes/customer.route');
-const routeUser = require('./routes/user.route');
-const routeProduct = require('./routes/product.route');
-
+const routeApp = require("./routes/app.route");
+const routeGenre = require("./routes/genre.route");
+const routeBook = require("./routes/book.route");
+const routeCustomer = require("./routes/customer.route");
+const routeUser = require("./routes/user.route");
+const routeProduct = require("./routes/product.route");
 
 // Middleware
-app.use(bodyParser({
-    limit: '50mb'
-}));
-app.use(bodyParser.json({
-    limit: '50mb'
-}));
-app.use(bodyParser.urlencoded({
+app.use(
+  bodyParser({
+    limit: "50mb"
+  })
+);
+app.use(
+  bodyParser.json({
+    limit: "50mb"
+  })
+);
+app.use(
+  bodyParser.urlencoded({
     extended: true,
-    limit: '50mb'
-}));
+    limit: "50mb"
+  })
+);
 //Enables Cross Origin Resource Sharing
-// app.use(cors());  
-app.use(function (req, res, next) {
-    //set headers to allow cross origin request.
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+// app.use(cors());
+app.use(function(req, res, next) {
+  //set headers to allow cross origin request.
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
 });
 
 // for parsing multipart/form-data
 app.use(upload.array());
-app.use(express.static('public'))
+app.use(express.static("public"));
 
-
-app.use('/api', routeApp);
-app.use('/api', routeGenre);
-app.use('/api', routeBook);
-app.use('/api', routeCustomer);
-app.use('/api', routeUser);
-app.use('/api', routeProduct);
+app.use("/api", routeApp);
+app.use("/api", routeGenre);
+app.use("/api", routeBook);
+app.use("/api", routeCustomer);
+app.use("/api", routeUser);
+app.use("/api", routeProduct);
 
 //Database Connection
 mongoose.connect(dbUrl);
@@ -65,7 +74,6 @@ mongoose.connect(dbUrl);
 //     console.log(`Connected to Mongo Database => ${dbUrl}`);
 // })
 // const db = mongoose.connection;
-
 
 // Database Connection
 //Set up default mongoose connection
@@ -77,15 +85,12 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
-db.on('connected', console.info.bind(console, `MongoDB Connected to ${dbUrl}`));
-db.on('error', console.error.bind(console, 'MongoDB connection error!'));
-
+db.on("connected", console.info.bind(console, `MongoDB Connected to ${dbUrl}`));
+db.on("error", console.error.bind(console, "MongoDB connection error!"));
 
 app.listen(port, () => {
-    console.log("Server started at port : " + port);
+  console.log("Server started at port : " + port);
 });
-
-
 
 // Routes
 // app.get('/', (req, res) => {
@@ -161,11 +166,6 @@ app.listen(port, () => {
 //         res.json(genre);
 //     });
 // });
-
-
-
-
-
 
 // Node.js way of creating server
 // var http = require('http');
